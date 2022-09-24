@@ -1,0 +1,38 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+
+# VboxNetwork: Route-3
+# net_pc34
+auto eth1
+iface eth1 inet static
+    address 10.0.3.1
+    netmask 255.255.255.0
+    network 10.0.3.0
+    broadcast 10.0.3.255
+    
+# net_Route-1
+auto eth2
+iface eth2 inet static
+    address 10.0.105.2
+    netmask 255.255.255.0
+    network 10.0.105.0
+    broadcast 10.0.105.255
+    post-up route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.105.1 dev eth2
+    pre-down route del -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.105.1 dev eth2
+    
+# net_Route-2
+auto eth3
+iface eth3 inet static
+    address 10.0.106.1
+    netmask 255.255.255.0
+    network 10.0.106.0
+    broadcast 10.0.106.255
+    post-up route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.106.2 dev eth3
+    pre-down route del -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.106.2 dev eth3
