@@ -5,34 +5,32 @@
 auto lo
 iface lo inet loopback
 
+# VboxNetwork: R1
+
 auto eth0
 iface eth0 inet dhcp
 
-# VboxNetwork: Route-1
-# net_pc1
 auto eth1
 iface eth1 inet static
-    address 10.0.1.1
+    address 192.168.1.254
     netmask 255.255.255.0
-    network 10.0.1.0
-    broadcast 10.0.1.255
+    network 192.168.1.0
+    broadcast 192.168.1.255
     
-# net_Route-3
 auto eth2
 iface eth2 inet static
-    address 10.0.105.1
+    address 192.168.100.1
     netmask 255.255.255.0
-    network 10.0.105.0
-    broadcast 10.0.105.255
-    post-up route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.105.2 dev eth2
-    pre-down route del -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.105.2 dev eth2
+    network 192.168.100.0
+    broadcast 192.168.100.255
+    post-up route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.100.2 dev eth2
+    pre-down route del -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.100.2 dev eth2
     
-# net_Route-2
 auto eth3
 iface eth3 inet static
-    address 10.0.107.1
+    address 192.168.101.2
     netmask 255.255.255.0
-    network 10.0.107.0
-    broadcast 10.0.107.255
-    post-up route add -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.107.2 dev eth3
-    pre-down route del -net 10.0.0.0 netmask 255.255.0.0 gw 10.0.107.2 dev eth3
+    network 192.168.101.0
+    broadcast 192.168.101.255
+    post-up route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.101.1 dev eth3
+    pre-down route del -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.101.1 dev eth3

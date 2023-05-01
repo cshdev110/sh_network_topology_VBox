@@ -1,7 +1,9 @@
 #!/bin/bash
 
-#Comments here
-
+#Create six VM using VBox. Three of them are normal host, and the other three are configure to be routers.
+#VBox must have the specific VM (debian OS without desktop environment).
+#The code will create a snapshot, and then the six host. 
+#Lastly, it will set up them to create a network. The code will run a ping checking connection between host.
 
 #Check if base VM exist at first
 function check_base_vm {
